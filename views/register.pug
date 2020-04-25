@@ -1,0 +1,18 @@
+doctype html
+head
+    title  register
+    link(rel='stylesheet' href='css/styles.css')
+form(action='/register' method='post')
+    .title
+        h3 register
+    .field
+        label Email:
+        input(type='text' name='email')
+        br
+    .field
+        label Password:
+        input(type='password' name='password' required='')
+    .field
+        input.submit-btn(type='submit' value='Submit' required='')
+    label#error-message
+
