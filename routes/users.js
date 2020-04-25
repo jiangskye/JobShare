@@ -101,3 +101,30 @@
 //         })(req, res, next);
 // });
 // module.exports = router;
+
+
+var express = require('express');
+var router = express.Router();
+
+var PubContent = require("../models/Pubcontent");
+
+router.post('/PubContent/add',function (req,res) {
+    if(req.body.title == '')
+    {
+        res.render({
+            message: 'The title cannot be blank.'
+        })
+    }
+
+    new PubContent({
+        title:req.body.title,
+        description:req.body.description,
+        content:req.body.content
+    }).save().then(function () {
+        res.render({message: 'content published'})
+
+    })
+
+});
+
+module.exports = router;

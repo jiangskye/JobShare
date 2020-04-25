@@ -58,7 +58,7 @@ app.use(passport.session());
 
 //router
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 
 //express server setting
 var server = http.createServer(app);
@@ -68,7 +68,7 @@ server.listen(app.get('port'), function () {
 
 //database setting
 var dbHost = 'localhost';
-var dbPort = 27017;
+var dbPort = 27018;
 var dbName = 'jobshare';
 
 // catch 404 and forward to error handler
