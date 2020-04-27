@@ -167,7 +167,7 @@ h6 {
 #intro {
   width: 100%;
   position: relative;
-  background: url("../../public/images/intro-bg.png") center bottom no-repeat;
+  background: url("../../images/intro-bg.png") center bottom no-repeat;
   background-size: cover;
   padding: 200px 0 120px 0;
 }
@@ -1272,6 +1272,19 @@ h6 {
   padding: 8px 30px;
   color: #fff;
   transition: 0.3s;
+}
+
+button {
+  background: #007bff;
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 30px;
+  color: #fff;
+  transition: 0.3s;
+}
+form button:hover {
+  background: #0067d5;
+  cursor: pointer;
 }
 
 #contact .form button[type="submit"]:hover {
