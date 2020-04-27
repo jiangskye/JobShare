@@ -16,7 +16,7 @@ mongoose.connect('mongodb://' + dbHost + ':' + dbPort + '/' + dbName,
 
 /*log in and register */
 router.get('/login', function(req, res, next) {
-    res.render('login');
+    res.render('main/login');
 });
 
 router.post(
@@ -29,20 +29,23 @@ router.post(
 );
 
 router.get('/register', function(req, res, next) {
-    res.render('register');
+    res.render('main/register');
 });
 
 router.post('/register', passport.authenticate('local-signup', {
-    successRedirect : '/users/userprofile', // redirect to the secure profile section
+    successRedirect : '/users/your-profile', // redirect to the secure profile section
     failureRedirect : '/users/register', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
 
+router.get('/companyregister', function(req, res, next) {
+    res.render('main/company-register');
+});
 
 router.get('/userprofile',isLoggedIn,(req,res)=>{
     console.log("req user",req.user);
     console.log("profile");
-    res.render('userprofile',{
+    res.render('main/your-profile',{
         user : req.user
     });
 });
