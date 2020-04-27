@@ -23,8 +23,12 @@ app.set('port', 8080);
 
 
 // view engine setup
+var swig = require('swig');
+app.engine('html', swig.renderFile);
+swig.setDefaults({cache: false});
+
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'html');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit:50000}));
 app.use(logger('dev'));
@@ -53,8 +57,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(session({secret : 'ilearnnodejs'}));
-//app.use(expressSession);
 
 //router
 app.use('/', indexRouter);
@@ -68,23 +70,23 @@ server.listen(app.get('port'), function () {
 
 //database setting
 var dbHost = 'localhost';
-var dbPort = 27018;
+var dbPort = 27017;
 var dbName = 'jobshare';
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 require('./config/passport')(passport);
 //require('./routes/index')(app,passport);
